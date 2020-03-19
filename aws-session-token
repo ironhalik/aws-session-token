@@ -1,4 +1,4 @@
-_test_completions() {
+_aws-sessions-token-completion() {
   local prev profiles
   COMPREPLY=($(compgen -W "--profile --token" -- "${COMP_WORDS[${COMP_CWORD}]}"))
 
@@ -10,7 +10,7 @@ _test_completions() {
   fi
 }
 
-complete -F _test_completions aws-session-token
+complete -F _aws-sessions-token-completion aws-session-token
 
 aws-session-token() {
   usage() {
