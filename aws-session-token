@@ -3,7 +3,7 @@ _aws-sessions-token-completion() {
   COMPREPLY=($(compgen -W "--profile --token" -- "${COMP_WORDS[${COMP_CWORD}]}"))
 
   prev="${COMP_WORDS[COMP_CWORD-1]}"
-  profiles=$(cat ~/.aws/config | grep -o '\[[^]]*\]' | tr -d '[]' | sed 's/profile //')
+  profiles=$(cat ~/.aws/config | grep -v '^#' | grep -o '\[[^]]*\]' | tr -d '[]' | sed 's/profile //')
 
   if [[ "${prev}" == "--profile" ]]; then
     COMPREPLY=($(compgen -W "${profiles}" -- "${COMP_WORDS[${COMP_CWORD}]}"))
