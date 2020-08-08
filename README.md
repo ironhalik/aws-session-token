@@ -1,5 +1,5 @@
 # aws-session-token
-A (relatively) simple Bash function for getting AWS session tokens when using aws cli with MFA.
+A (relatively) simple Bash function for getting AWS session tokens when using aws cli with MFA. Now with Autocomplete!
 
 ## In short
 ```
