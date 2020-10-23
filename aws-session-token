@@ -45,8 +45,8 @@ aws-session-token() {
     token=${args[1]}
   fi
 
-  if ! which -s jq; then echo "Missing: jq. Try: brew install jq"; return 1; fi
-  if ! which -s aws; then echo "Missing: aws. Try: pip install awscli"; return 1; fi
+  if ! which jq > /dev/null 2>&1; then echo "Missing: jq. Try: brew install jq"; return 1; fi
+  if ! which aws > /dev/null 2>&1; then echo "Missing: aws. Try: pip install awscli"; return 1; fi
 
   if [ -z $profile ]; then profile=$AWS_PROFILE; fi
   if [ -z $profile ]; then echo "Missing AWS profile. Either provide it via AWS_PROFILE env var or --profile"; return 1; fi
