@@ -1,16 +1,18 @@
-_aws-sessions-token-completion() {
-  local prev profiles
-  COMPREPLY=($(compgen -W "--profile --token" -- "${COMP_WORDS[${COMP_CWORD}]}"))
+if [ ! -z "${BASH_VERSION}" ]; then
+  _aws-sessions-token-completion() {
+    local prev profiles
+    COMPREPLY=($(compgen -W "--profile --token" -- "${COMP_WORDS[${COMP_CWORD}]}"))
 
-  prev="${COMP_WORDS[COMP_CWORD-1]}"
-  profiles=$(cat ~/.aws/config | grep -v '^#' | grep -o '\[[^]]*\]' | tr -d '[]' | sed 's/profile //')
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    profiles=$(cat ~/.aws/config | grep -v '^#' | grep -o '\[[^]]*\]' | tr -d '[]' | sed 's/profile //')
 
-  if [[ "${prev}" == "--profile" ]]; then
-    COMPREPLY=($(compgen -W "${profiles}" -- "${COMP_WORDS[${COMP_CWORD}]}"))
-  fi
-}
+    if [[ "${prev}" == "--profile" ]]; then
+      COMPREPLY=($(compgen -W "${profiles}" -- "${COMP_WORDS[${COMP_CWORD}]}"))
+    fi
+  }
 
-complete -F _aws-sessions-token-completion aws-session-token
+  complete -F _aws-sessions-token-completion aws-session-token
+fi
 
 aws-session-token() {
   local profile token args scriptname
